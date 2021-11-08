@@ -1,6 +1,6 @@
 const express = require('express');
 const { db } = require("../../service/mongo-service");
-const {defaultPage, defaultSize, extractUser} = require("./user-utils");
+const { defaultPage, defaultSize, extractUser } = require("./user-utils");
 
 const router = express.Router();
 
