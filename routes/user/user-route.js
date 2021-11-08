@@ -26,4 +26,8 @@ router.post('/', (req, res) => {
     db().collection('users').insertOne(extractUser(req.body), (err, result) => res.send(result));
 })
 
+router.delete('/:id', (req, res) => {
+    db().collection('users').deleteOne({id: req.params.id}, {}, (err, result) => res.send(result));
+})
+
 module.exports = router;
