@@ -1,5 +1,6 @@
 const express = require('express');
 const { db } = require("../../service/mongo-service");
+const {defaultPage, defaultSize, extractUser} = require("./user-utils");
 
 const router = express.Router();
 
@@ -24,15 +25,5 @@ router.get('/:username', (req, res) => {
 router.post('/', (req, res) => {
     db().collection('users').insertOne(extractUser(req.body), (err, result) => res.send(result));
 })
-
-const defaultPage = () => 1;
-const defaultSize = () => 10
-const extractUser = (body) => {
-    return {
-        username: body.username,
-        password: body.password,
-        email: body.email
-    }
-}
 
 module.exports = router;
