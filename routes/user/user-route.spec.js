@@ -11,6 +11,6 @@ describe('users route test',  () => {
     it('should insert user', async () => {
         await request.post('/users')
             .send({username: 'mrt', password: 'byr', email: 'gmail'})
-            .expect(200);
+            .expect(201);
     });
 })

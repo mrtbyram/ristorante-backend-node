@@ -23,7 +23,8 @@ router.get('/:username', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    (await db).collection('users').insertOne(extractUser(req.body), (err, result) => res.send(result));
+    (await db).collection('users').insertOne(extractUser(req.body),
+        (err, result) => res.status(201).send(result));
 })
 
 router.delete('/:id', async (req, res) => {
