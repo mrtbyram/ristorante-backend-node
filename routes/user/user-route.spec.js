@@ -9,8 +9,13 @@ describe('users route test',  () => {
     });
 
     it('should insert user', async () => {
-        await request.post('/users')
-            .send({username: 'mrt', password: 'byr', email: 'gmail'})
+        const username = Math.random().toString(10)
+
+        await request.post('/users').send({username, password: 'byr', email: 'gmail'})
             .expect(201);
+
+        await request.get('/users/' + username)
+            .expect(200)
+            .then(res => expect(res.body.username).toEqual(username));
     });
 })
