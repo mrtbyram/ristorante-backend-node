@@ -1,8 +1,8 @@
 {
-  "spec_dir": "spec",
+  "spec_dir": "",
   "spec_files": [
     "**/*.spec.?(m)js",
-    "!./node_modules"
+    "!./node_modules/**"
   ],
   "helpers": [
     "helpers/**/*.?(m)js"
