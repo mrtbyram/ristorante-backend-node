@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine --reporter=jasmine-console-reporter",
-    "start": "nodemon index.js"
+    "test": "NODE_ENV=test jasmine --reporter=jasmine-console-reporter",
+    "start": "NODE_ENV=prod nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +21,7 @@
   "devDependencies": {
     "jasmine": "^3.10.0",
     "jasmine-console-reporter": "^3.1.0",
+    "mongo-mock": "^4.1.0",
     "supertest": "^6.1.6"
   }
 }
