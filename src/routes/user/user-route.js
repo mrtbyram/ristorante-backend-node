@@ -25,12 +25,12 @@ router.get('/:username', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     (await db).collection('users').insertOne(extractUser(req.body),
-        (err, result) => res.status(201).send(result));
+        (err, result) => res.status(201).send());
 })
 
 router.delete('/:id', async (req, res) => {
     (await db).collection('users').deleteOne({id: req.params.id}, {},
-        (err, result) => res.send(result));
+        (err, result) => res.send());
 })
 
 module.exports = router;

@@ -2,7 +2,8 @@ const express = require('express');
 const user = require('./routes/user');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const errorHandler = require("./error/error-handler");
+const ristoranteErrorHandler = require("./error/ristorante-error-handler");
+const allErrorHandler = require("./error/all-error-handler");
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(bodyParser.json());
 
 app.use('/users', user.userRouter);
 
-app.use(errorHandler);
+app.use(ristoranteErrorHandler);
+app.use(allErrorHandler)
 
 module.exports = app;
