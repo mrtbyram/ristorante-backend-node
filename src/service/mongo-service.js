@@ -12,7 +12,10 @@ const db = connect
     .then(c => c.db('ristorante'))
     .catch(err => {
         console.log(err);
-        return { collection: (c) => { throw dbConnectionError() } }
+        return { collection: (c) => {
+            console.log(err)
+            throw dbConnectionError()
+        } }
     });
 
 module.exports = db;
