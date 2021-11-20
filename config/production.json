@@ -1,0 +1,5 @@
+{
+  "db": {
+    "mongo": "mongodb+srv://byram:byram@cluster0.uymvn.mongodb.net/ristorante?retryWrites=true&w=majority"
+  }
+}
