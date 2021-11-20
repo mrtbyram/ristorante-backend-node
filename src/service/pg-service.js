@@ -8,4 +8,8 @@ const db = new Pool({
     port: 5432,
 });
 
-module.exports = db;
+const pg = {
+    getAllCountries: () => db.query('SELECT * FROM country')
+}
+
+module.exports = pg;
