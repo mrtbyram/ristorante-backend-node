@@ -1,11 +1,12 @@
-const express = require('express');
-const db = require("../../service/mongo-service");
-const { defaultPage, defaultSize, extractUser } = require("./user-utils");
-const {userNotFound} = require("../../error/ristorante-errors");
-const pino = require('pino');
+const express = require('express'),
+    db = require("../../service/mongo-service"),
+    { defaultPage, defaultSize, extractUser } = require("./user-utils"),
+    {userNotFound} = require("../../error/ristorante-errors"),
+    pino = require('pino'),
+    { validateUsername } = require('./user-validator');
 
-const logger = pino();
-const router = express.Router();
+const logger = pino(),
+    router = express.Router();
 
 router.get('/',  (req, res, next) => {
     logger.info('get all users request has been received');
@@ -22,6 +23,8 @@ router.get('/',  (req, res, next) => {
 })
 
 router.get('/:username', (req, res, next) => {
+    validateUsername(req.params.username);
+
     db.then(d => d.collection('users').findOne({username: req.params.username},
         (err, item) => !item
         ? next(userNotFound(req.params.username))
