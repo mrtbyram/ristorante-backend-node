@@ -2,10 +2,14 @@ const express = require('express');
 const db = require("../../service/mongo-service");
 const { defaultPage, defaultSize, extractUser } = require("./user-utils");
 const {userNotFound} = require("../../error/ristorante-errors");
+const pino = require('pino');
 
+const logger = pino();
 const router = express.Router();
 
 router.get('/',  (req, res, next) => {
+    logger.info('get all users request has been received');
+
     const page = parseInt(req.query.page || defaultPage()) - 1;
     const size = parseInt(req.query.size || defaultSize());
 
