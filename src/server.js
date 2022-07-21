@@ -11,8 +11,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/user', UserRouter);
-app.use('/country', CountryRouter);
+app.use('/users', UserRouter);
+app.use('/countries', CountryRouter);
 
 app.use(ristoranteErrorHandler);
 app.use(allErrorHandler)
