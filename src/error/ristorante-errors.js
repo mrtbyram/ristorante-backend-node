@@ -10,5 +10,6 @@ class RistoranteError extends Error {
 module.exports = {
     userNotFound: (username) => new RistoranteError(`user with name ${username} not found`, 404),
     dbConnectionError: () => new RistoranteError('DB Connection Problem', 500),
+    badCredentials: () => new RistoranteError('username or password is wrong', 400),
     RistoranteError
 }
