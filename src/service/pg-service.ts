@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+const {Pool} = require('pg');
 
 const db = new Pool({
     user: 'postgres',
@@ -12,4 +12,4 @@ const pg = {
     getAllCountries: () => db.query('SELECT * FROM country')
 }
 
-module.exports = pg;
+export default pg;

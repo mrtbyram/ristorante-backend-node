@@ -12,4 +12,4 @@ const authFilter = (req, res, next) => {
     next();
 }
 
-module.exports = authFilter;
+export {authFilter};

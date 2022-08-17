@@ -1,5 +1,5 @@
-const server = require('../../server');
-const supertest = require('supertest');
+import server from '../../server';
+import supertest from 'supertest';
 
 const request = supertest(server);
 

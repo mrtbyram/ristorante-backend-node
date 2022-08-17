@@ -21,4 +21,4 @@ router.post('/token', (req, res, next) => {
                 : errors.badCredentials()));
 });
 
-module.exports = router;
+export {router as authServer}

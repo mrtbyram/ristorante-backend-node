@@ -1,14 +1,16 @@
+import db from '../../service/mongo-service';
+
 const express = require('express'),
-    db = require("../../service/mongo-service"),
-    { defaultPage, defaultSize, extractUser } = require("./user-utils"),
+    {defaultPage, defaultSize, extractUser} = require("./user-utils"),
     {userNotFound} = require("../../error/ristorante-errors"),
     pino = require('pino'),
-    { validateUsername } = require('./user-validator');
+    {validateUsername} = require('./user-validator');
 
-const logger = pino(),
-    router = express.Router();
+const logger = pino();
 
-router.get('/',  async (req, res) => {
+export const router = express.Router();
+
+router.get('/', async (req, res) => {
     logger.info('get all users request has been received');
 
     const page = parseInt(req.query.page || defaultPage()) - 1;
@@ -21,16 +23,16 @@ router.get('/',  async (req, res) => {
         .toArray((err, items) => res.send(items)));
 })
 
-router.get('/:username', async (req, res) => {
+router.get('/:username', async (req, res, next) => {
     validateUsername(req.params.username);
 
     await db.then(d => d.collection('users').findOne({username: req.params.username},
         (err, item) => !item
-        ? next(userNotFound(req.params.username))
-        : res.send(item)));
+            ? next(userNotFound(req.params.username))
+            : res.send(item)));
 })
 
-router.post('/',   async (req, res) => {
+router.post('/', async (req, res) => {
     await db.then(d => d.collection('users').insertOne(extractUser(req.body),
         () => res.status(201).send()));
 })
@@ -39,5 +41,3 @@ router.delete('/:id', async (req, res) => {
     await db.then(d => d.collection('users').deleteOne({id: req.params.id}, {},
         () => res.send()));
 })
-
-module.exports = router;

@@ -1,6 +1,7 @@
-const server = require('../../server');
+import server from '../../server';
+import pg from '../../service/pg-service';
+
 const supertest = require('supertest');
-const pg = require("../../service/pg-service");
 
 const request = supertest(server);
 
@@ -10,7 +11,12 @@ describe('country route tests', () => {
     });
 
     it('should countries have code field', async () => {
-        spyOn(pg, 'getAllCountries').and.callFake(() => new Promise((resolve) => resolve({rows:[{name: 'Kuwait', alpha_3: 'KWT'}]})));
+        spyOn(pg, 'getAllCountries').and.callFake(() => new Promise((resolve) => resolve({
+            rows: [{
+                name: 'Kuwait',
+                alpha_3: 'KWT'
+            }]
+        })));
 
         await request.get('/countries').expect(200)
             .then(res => {

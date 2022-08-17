@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const pg = require("../../service/pg-service");
+import pg from '../../service/pg-service';
 
 const router = Router();
 
@@ -9,4 +9,4 @@ router.get('/', (req, res, next) => {
         .catch(next);
 });
 
-module.exports = router;
+export {router};

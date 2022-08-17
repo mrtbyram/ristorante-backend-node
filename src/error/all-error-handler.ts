@@ -7,4 +7,4 @@ const allErrorHandler = (err, req, res, next) => {
     res.status(500).send({message: err.message});
 }
 
-module.exports = allErrorHandler;
+export default allErrorHandler;

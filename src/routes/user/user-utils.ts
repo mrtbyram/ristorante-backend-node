@@ -11,7 +11,7 @@ const extractUser = (body) => {
     }
 }
 
-module.exports = {
+export {
     defaultSize,
     defaultPage,
     extractUser

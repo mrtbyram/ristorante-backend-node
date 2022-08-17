@@ -2,11 +2,12 @@ const express = require('express');
 const config = require('config');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const ristoranteErrorHandler = require("./error/ristorante-error-handler");
-const allErrorHandler = require("./error/all-error-handler");
+import {ristoranteErrorHandler} from './error/ristorante-error-handler';
+
+import allErrorHandler from './error/all-error-handler';
 const {CountryRouter} = require("./routes/country");
-const {UserRouter} = require("./routes/user");
-const {AuthFilter, AuthServer} = require('./routes/security');
+import {UserRouter} from './routes/user';
+import {AuthServer, AuthFilter} from './routes/security';
 
 const app = express();
 
@@ -24,4 +25,4 @@ app.use('/countries', CountryRouter);
 app.use(ristoranteErrorHandler);
 app.use(allErrorHandler)
 
-module.exports = app;
+export default app;

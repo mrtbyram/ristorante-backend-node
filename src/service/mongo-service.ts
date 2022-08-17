@@ -22,4 +22,4 @@ const db = connect
         } }
     });
 
-module.exports = db;
+export default db;

@@ -12,4 +12,4 @@ const ristoranteErrorHandler = (err, req, res, next) => {
     }
 }
 
-module.exports = ristoranteErrorHandler;
+export { ristoranteErrorHandler };
